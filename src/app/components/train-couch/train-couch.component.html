@@ -1,0 +1,55 @@
+<div>
+  couch
+
+  <div class="train-coach">
+    <div class="row" *ngFor="let row of rows; let i = index">
+      <ng-container *ngIf="i &lt;=9">
+        <div class="seat" *ngFor="let seat of seats">
+          <button
+            [ngClass]="{
+              available: seat.status === 'available',
+              booked: seat.status === 'booked',
+              reserved: seat.status === 'reserved'
+            }"
+          >
+            <i class="fa-solid fa-chair"></i>
+            {{ row }}{{ seat.number }}
+          </button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="i === 10">
+        <div class="seat" *ngFor="let seat of seats; let j = index">
+          <button
+            [ngClass]="{
+              available: seat.status === 'available',
+              booked: seat.status === 'booked',
+              reserved: seat.status === 'reserved'
+            }"
+            *ngIf="j &lt;= 2"
+          >
+            <i class="fa-solid fa-chair"></i>
+            {{ row }}{{ seat.number }}
+          </button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="booking">
+    <h1>Book here!</h1>
+  </div>
+  <div class="bookingInput">
+    <div class="inputLabel">
+      <label>Name</label>
+      <label>Mobile Number</label>
+      <label>Total seats</label>
+    </div>
+    <div class="inputValues">
+      <input [(ngModel)]="name" type="text" />
+
+      <input [(ngModel)]="mobile" type="text" />
+
+      <input [(ngModel)]="totalSeats" type="number" />
+      <button (click)="registerSeats()" class="registerButton">register</button>
+    </div>
+  </div>
+</div>

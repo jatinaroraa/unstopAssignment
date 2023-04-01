@@ -1,0 +1,89 @@
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.row-start {
+  margin-right: 20px;
+}
+.seat.row-start button {
+  margin-left: 0;
+}
+.seat {
+  margin-right: 10px;
+}
+
+.seat button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  font-size: 16px;
+}
+
+.seat button.available {
+  background-color: green;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.seat button.booked {
+  background-color: red;
+  color: white;
+}
+
+.seat button.reserved {
+  background-color: orange;
+  color: white;
+}
+
+.seat.row-start button {
+  margin-left: 0;
+}
+.train-coach {
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px; */
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+/* booking  */
+.booking {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.bookingInput {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.inputLabel {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputValues {
+  display: flex;
+  flex-direction: column;
+}
+.registerButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px 0;
+}
