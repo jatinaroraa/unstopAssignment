@@ -1,7 +1,42 @@
 <div>
-  couch
+  <h1 style="text-align: center">Booking System</h1>
+  <div class="divideTwoDiv">
+    <div class="train-coach">
+      <div class="row" *ngFor="let data of getSeats; let i = index">
+        <ng-container *ngIf="i &lt;=9">
+          <div class="seat" *ngFor="let seat of data.seats">
+            <button
+              [ngClass]="{
+                available: seat.status === 'available',
+                booked: seat.status === 'booked',
+                reserved: seat.status === 'reserved'
+              }"
+            >
+              <i class="fa-solid fa-chair"></i>
+              {{ data.row }}{{ seat.seatNumber }}
+            </button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="i === 10">
+          <div class="seat" *ngFor="let seat of data.seats; let j = index">
+            <button
+              [ngClass]="{
+                available: seat.status === 'available',
+                booked: seat.status === 'booked',
+                reserved: seat.status === 'reserved'
+              }"
+              *ngIf="j &lt;= 2"
+            >
+              <i class="fa-solid fa-chair"></i>
+              {{ data.row }}{{ seat.seatNumber }}
+            </button>
+          </div>
+        </ng-container>
+      </div>
+    </div>
 
-  <div class="train-coach">
+    <!-- demo -->
+    <!-- <div class="train-coach">
     <div class="row" *ngFor="let row of rows; let i = index">
       <ng-container *ngIf="i &lt;=9">
         <div class="seat" *ngFor="let seat of seats">
@@ -33,23 +68,65 @@
         </div>
       </ng-container>
     </div>
-  </div>
-  <div class="booking">
-    <h1>Book here!</h1>
-  </div>
-  <div class="bookingInput">
-    <div class="inputLabel">
-      <label>Name</label>
-      <label>Mobile Number</label>
-      <label>Total seats</label>
-    </div>
-    <div class="inputValues">
-      <input [(ngModel)]="name" type="text" />
+  </div> -->
+    <div class="booking">
+      <h1>Book here!</h1>
 
-      <input [(ngModel)]="mobile" type="text" />
+      <div class="bookingInput">
+        <div class="inputLabel">
+          <label>Name</label>
+          <label>Mobile </label>
+          <label>Total seats</label>
+        </div>
+        <div class="inputValues">
+          <input [(ngModel)]="name" type="text" />
 
-      <input [(ngModel)]="totalSeats" type="number" />
-      <button (click)="registerSeats()" class="registerButton">register</button>
+          <input [(ngModel)]="mobile" type="text" />
+
+          <input [(ngModel)]="totalSeats" type="number" />
+          <button (click)="registerSeats()" class="registerButton">
+            Book Now
+          </button>
+        </div>
+      </div>
+      <!-- *ngIf="bookedSeats && bookedSeats.length > 0" -->
+
+      <div class="displayBooked" *ngIf="bookedSeats && bookedSeats.length > 0">
+        <h2>Reserved seats</h2>
+        <!-- <div *ngFor="let data; in: bookedSeats">
+          <p>{{ data.seatRow }}{{ data.seatNumber }}</p>
+        </div> -->
+
+        <div class="userDetail">
+          <div class="userDisplay">
+            <label>Name:</label>
+            <!-- <p>33</p> -->
+
+            <p>{{ bookedSeats[0].customer.name }}</p>
+          </div>
+          <div class="userDisplay">
+            <label>Mobile:</label>
+            <!-- <p>33</p> -->
+
+            <p>{{ bookedSeats[0].customer.mobileNumber }}33</p>
+          </div>
+          <div class="userDisplay">
+            <label>Total seats:</label>
+            <p>{{ bookedSeats.length }}</p>
+          </div>
+        </div>
+
+        <div class="seatsDisplay">
+          <p *ngFor="let data of bookedSeats">
+            {{ data.seatRow }}{{ data.seatNumber }}
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
+  <div>
+    <button (click)="resetAll()" class="button">
+      <i class="fa-solid fa-rotate-left"></i>Reset
+    </button>
   </div>
 </div>

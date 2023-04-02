@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const route = express.Router();
+const cors = require("cors");
 const mongoose = require("mongoose");
 const config = require("./config/development");
 const bodyParser = require("body-parser");
@@ -12,6 +13,7 @@ const connection = mongoose
   .catch((err) => {
     console.log(err, "db error");
   });
+app.use(cors());
 app.use(bodyParser.json());
 
 require("./routes")(app);

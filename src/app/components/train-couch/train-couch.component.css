@@ -63,27 +63,98 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* background-color: black; */
+  width: 50%;
 }
 .bookingInput {
   display: flex;
   flex-direction: row;
   /* justify-content: center; */
   /* align-items: center; */
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 .inputLabel {
   display: flex;
   flex-direction: column;
+  margin-right: 10px;
+}
+.inputLabel label {
+  margin: 10px 0px;
 }
 
 .inputValues {
   display: flex;
   flex-direction: column;
 }
+.inputValues input {
+  margin: 10px 0px;
+}
 .registerButton {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 10px 0;
+  border: 0px;
+  background-color: green;
+  color: white;
+  height: 30px;
+  font-size: 18px;
+  align-items: center;
+  border-radius: 3px;
+  /* width: 40px; */
+}
+.divideTwoDiv {
+  display: flex;
+  flex-direction: row;
+  /* background-color: black; */
+  /* align-items: center; */
+  justify-content: center;
+  /* align-items: stretch; */
+}
+.displayBooked {
+  width: 50%;
+  background-color: rgb(230, 230, 230);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+.seatsDisplay {
+  display: flex;
+  flex-direction: row;
+}
+.seatsDisplay p {
+  margin: 5px 8px;
+}
+.userDetail {
+  display: flex;
+  flex-direction: column;
+}
+
+.userDisplay {
+  display: flex;
+  flex-direction: row;
+  /* width: 150px;
+  margin-right: 20px; */
+}
+
+.userDisplay label {
+  text-align: right;
+  margin-bottom: 5px;
+}
+
+.userDisplay p {
+  text-align: left;
+  margin: 0px;
+}
+.button {
+  background-color: green;
+  color: white;
+  padding: 5px;
+  margin: 10px 0px;
+  border: 0px;
+  width: 100px;
+  height: 40px;
+  border-radius: 2px;
 }

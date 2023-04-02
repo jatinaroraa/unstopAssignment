@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { ServicesModule } from "src/app/services/services.module";
+import { TrainseatsService } from "src/app/services/trainSeats/trainseats.service";
 
 @Component({
   selector: "app-train-couch",
@@ -19,6 +21,8 @@ export class TrainCouchComponent implements OnInit {
   name: string;
   mobile: number;
   totalSeats: number;
+  getSeats;
+  bookedSeats;
   onSeatClick(seat: any) {
     if (seat.status === "available") {
       seat.status = "booked";
@@ -26,13 +30,54 @@ export class TrainCouchComponent implements OnInit {
       seat.status = "available";
     }
   }
+  constructor(private TrainSeats: TrainseatsService) {
+    // let seats = new TrainseatsService();
+  }
   registerSeats() {
+    if (!this.name || !this.mobile || !this.totalSeats)
+      return window.alert("Enter all details");
     if (this.totalSeats > 7) {
       return window.alert("you cant book more than 7 seats");
     }
-    console.log("hit funct", this.name, this.mobile, this.totalSeats);
-  }
-  constructor() {}
+    let body = {
+      user: {
+        name: this.name,
+        mobileNumber: this.mobile,
+        totalSeats: this.totalSeats,
+      },
+    };
+    this.TrainSeats.registerSeats(body).subscribe((sucess) => {
+      console.log(sucess, "register");
+      this.bookedSeats = sucess;
 
-  ngOnInit(): void {}
+      if (!sucess || this.bookedSeats.length == 0)
+        return window.alert("No seats left");
+      this.getAllSeatsData();
+      // this.getSeats = sucess;
+    });
+    // console.log("hit funct", this.name, this.mobile, this.totalSeats);
+  }
+  resetAll() {
+    //reset all
+
+    this.TrainSeats.resetAll().subscribe((data) => {
+      if (!data) {
+        return window.alert("error in reset");
+      }
+      this.getAllSeatsData();
+    });
+  }
+  getAllSeatsData() {
+    this.TrainSeats.getSeats().subscribe((data) => {
+      console.log(data, "seats");
+      this.getSeats = data;
+    });
+  }
+  ngOnInit(): void {
+    // this.TrainSeats.getSeats().subscribe((data) => {
+    //   console.log(data, "seats");
+    //   this.getSeats = data;
+    // });
+    this.getAllSeatsData();
+  }
 }
