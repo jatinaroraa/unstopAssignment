@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class TrainseatsService {
   // url = "http//:localhost:3000";
-  private baseUrl = "https://unstop-backend.vercel.app";
+  private baseUrl = "https://unstop-assignment-p3q7.vercel.app";
   constructor(private http: HttpClient) {}
 
   getSeats() {
